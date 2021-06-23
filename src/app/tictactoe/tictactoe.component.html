@@ -1,7 +1,7 @@
 <div class="game-pad">
   <div *ngFor="let line of gamePad; index as row" class="game-pad-line">
     <div (click)="markBox(row, column)" *ngFor="let box of line; index as column" class="game-pad-box">
-      <div class="mark">
+      <div class="mark" id="{{row}}-{{column}}">
         {{box}}
       </div>
     </div>

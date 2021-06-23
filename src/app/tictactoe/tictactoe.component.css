@@ -1,12 +1,13 @@
 .game-pad {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 95vh;
 }
 .game-pad-line {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 .game-pad-box {
     display: block;
@@ -23,4 +24,7 @@
     font-size: 75px;
     color: white;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.highlight {
+    background-color: green;
 }

@@ -10,14 +10,18 @@ export class TictactoeComponent implements OnInit {
 
   constructor() { }
 
-  gamePad : string[][] = [
+  gamePad: string[][] = [
     ['', '', ''],
     ['', '', ''],
     ['', '', '']
   ];
   currentTurn: string = 'X';
   winner: boolean = false;
-
+  winningSequence: number[][] = [
+    [],
+    [],
+    []
+  ];
   ngOnInit() {
 
   }
@@ -41,24 +45,52 @@ export class TictactoeComponent implements OnInit {
       if(this.gamePad[0][0] === this.currentTurn) {
         if(this.gamePad[2][2] === this.currentTurn) {
           this.winner = true;
+          this.winningSequence[0] = [0, 0];
+          this.winningSequence[1] = [1, 1];
+          this.winningSequence[2] = [2, 2];
+
+          for(let winningBox of this.winningSequence) {
+            this.highlight(winningBox[0], winningBox[1]);
+          }
           return;
         }
       }
       if(this.gamePad[1][0] === this.currentTurn) {
         if(this.gamePad[1][2] === this.currentTurn) {
           this.winner = true;
+          this.winningSequence[0] = [1, 0];
+          this.winningSequence[1] = [1, 1];
+          this.winningSequence[2] = [1, 2];
+
+          for(let winningBox of this.winningSequence) {
+            this.highlight(winningBox[0], winningBox[1]);
+          }
           return;
         }
       }
       if(this.gamePad[0][1] === this.currentTurn) {
         if(this.gamePad[2][1] === this.currentTurn) {
           this.winner = true;
+          this.winningSequence[0] = [0, 1];
+          this.winningSequence[1] = [1, 1];
+          this.winningSequence[2] = [2, 1];
+
+          for(let winningBox of this.winningSequence) {
+            this.highlight(winningBox[0], winningBox[1]);
+          }
           return;
         }
       }
       if(this.gamePad[2][0] === this.currentTurn) {
         if(this.gamePad[0][2] === this.currentTurn) {
           this.winner = true;
+          this.winningSequence[0] = [2, 0];
+          this.winningSequence[1] = [1, 1];
+          this.winningSequence[2] = [0, 2];
+
+          for(let winningBox of this.winningSequence) {
+            this.highlight(winningBox[0], winningBox[1]);
+          }
           return;
         }
       }
@@ -68,12 +100,26 @@ export class TictactoeComponent implements OnInit {
       if(this.gamePad[1][0] === this.currentTurn) {
         if(this.gamePad[2][0] === this.currentTurn) {
           this.winner = true;
+          this.winningSequence[0] = [0, 0];
+          this.winningSequence[1] = [1, 0];
+          this.winningSequence[2] = [2, 0];
+
+          for(let winningBox of this.winningSequence) {
+            this.highlight(winningBox[0], winningBox[1]);
+          }
           return;
         }
       }
       if(this.gamePad[0][1] === this.currentTurn) {
         if(this.gamePad[0][2] === this.currentTurn) {
           this.winner = true;
+          this.winningSequence[0] = [0, 0];
+          this.winningSequence[1] = [0, 1];
+          this.winningSequence[2] = [0, 2];
+
+          for(let winningBox of this.winningSequence) {
+            this.highlight(winningBox[0], winningBox[1]);
+          }
           return;
         }
       }
@@ -83,18 +129,38 @@ export class TictactoeComponent implements OnInit {
       if(this.gamePad[1][2] === this.currentTurn) {
         if(this.gamePad[0][2] === this.currentTurn) {
           this.winner = true;
+          this.winningSequence[0] = [0, 2];
+          this.winningSequence[1] = [1, 2];
+          this.winningSequence[2] = [2, 2];
+
+          for(let winningBox of this.winningSequence) {
+            this.highlight(winningBox[0], winningBox[1]);
+          }
           return;
         }
       }
       if(this.gamePad[2][1] === this.currentTurn) {
         if(this.gamePad[2][0] === this.currentTurn) {
           this.winner = true;
+          this.winningSequence[0] = [2, 0];
+          this.winningSequence[1] = [2, 1];
+          this.winningSequence[2] = [2, 2];
+
+          for(let winningBox of this.winningSequence) {
+            this.highlight(winningBox[0], winningBox[1]);
+          }
           return;
         }
       }
     }
   }
 
+  highlight(row: number, column: number) {
+    if(!this.winner) return;
+    console.log(row, column, document.getElementById(row + '-' + column));
+    document.getElementById(row + '-' + column)?.classList.add('highlight');
+    return;
+  }
 
   clearGamePad() {
 
