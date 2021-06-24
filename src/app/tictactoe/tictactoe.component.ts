@@ -29,14 +29,16 @@ export class TictactoeComponent implements OnInit {
   markBox(row: number, column: number) {
     if(this.winner) return;
     this.gamePad[row][column] = this.currentTurn;
-    this.checkWinCondition();
-    if (!this.winner) {
-      if(this.currentTurn === 'X') {
-        this.currentTurn = 'O';
-      } else if(this.currentTurn === 'O') {
-        this.currentTurn = 'X';
+    setTimeout(() => { //add delay to check winner to wait for all data bindings to affect
+      this.checkWinCondition();
+      if (!this.winner) {
+        if(this.currentTurn === 'X') {
+          this.currentTurn = 'O';
+        } else if(this.currentTurn === 'O') {
+          this.currentTurn = 'X';
+        }
       }
-    }
+    }, 50);
   }
 
   checkWinCondition() {
@@ -157,12 +159,16 @@ export class TictactoeComponent implements OnInit {
 
   highlight(row: number, column: number) {
     if(!this.winner) return;
-    console.log(row, column, document.getElementById(row + '-' + column));
     document.getElementById(row + '-' + column)?.classList.add('highlight');
     return;
   }
 
   clearGamePad() {
-
+    this.gamePad = [
+      ['', '', ''],
+      ['', '', ''],
+      ['', '', '']
+    ];
+    this.winner = false;
   }
 }

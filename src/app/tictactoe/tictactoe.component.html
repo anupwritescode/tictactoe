@@ -6,7 +6,10 @@
       </div>
     </div>
   </div>
-  <h1 *ngIf="winner">
-    {{currentTurn}} WINS!!!
-  </h1>
+  <div *ngIf="winner">
+    <h1>
+      {{currentTurn}} WINS!!!
+    </h1>
+    <button (click)="clearGamePad()">Start a new game</button>
+  </div>
 </div>
