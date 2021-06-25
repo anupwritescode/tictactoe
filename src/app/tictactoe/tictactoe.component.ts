@@ -17,6 +17,7 @@ export class TictactoeComponent implements OnInit {
   ];
   currentTurn: string = 'X';
   winner: boolean = false;
+  draw: boolean = false;
   winningSequence: number[][] = [
     [],
     [],
@@ -28,6 +29,7 @@ export class TictactoeComponent implements OnInit {
 
   markBox(row: number, column: number) {
     if(this.winner) return;
+    if(this.gamePad[row][column] === 'X' || this.gamePad[row][column] === 'O') return;
     this.gamePad[row][column] = this.currentTurn;
     setTimeout(() => { //add delay to check winner to wait for all data bindings to affect
       this.checkWinCondition();
@@ -155,6 +157,17 @@ export class TictactoeComponent implements OnInit {
         }
       }
     }
+    //check for draw
+    for(let line of this.gamePad) {
+      for(let box of line) {
+        if(box !== 'X' && box !== 'O') {
+          this.draw = false;
+          return;
+        }
+      }
+    }
+    this.draw = true;
+    return;
   }
 
   highlight(row: number, column: number) {

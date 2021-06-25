@@ -1,15 +1,18 @@
 <div class="game-pad">
   <div *ngFor="let line of gamePad; index as row" class="game-pad-line">
     <div (click)="markBox(row, column)" *ngFor="let box of line; index as column" class="game-pad-box">
-      <div class="mark" id="{{row}}-{{column}}">
+      <div class="box" id="{{row}}-{{column}}" *ngIf="box === 'X' || box === 'O'">
         {{box}}
       </div>
     </div>
   </div>
-  <div *ngIf="winner">
-    <h1>
-      {{currentTurn}} WINS!!!
+  <div *ngIf="winner || draw">
+    <h1 *ngIf="winner" class="result">
+      {{currentTurn}} wins!!!
     </h1>
-    <button (click)="clearGamePad()">Start a new game</button>
+    <h1 *ngIf="draw" class="result">
+      DRAW!
+    </h1>
+    <button type="button" class="btn btn-primary" (click)="clearGamePad()">Start a new game</button>
   </div>
 </div>
