@@ -183,5 +183,6 @@ export class TictactoeComponent implements OnInit {
       ['', '', '']
     ];
     this.winner = false;
+    this.draw = false;
   }
 }
