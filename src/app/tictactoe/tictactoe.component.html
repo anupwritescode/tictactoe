@@ -1,4 +1,5 @@
 <div class="game-pad">
+  <p>Current Turn : {{currentTurn}}</p>
   <div *ngFor="let line of gamePad; index as row" class="game-pad-line">
     <div (click)="markBox(row, column)" *ngFor="let box of line; index as column" class="game-pad-box">
       <div class="box" id="{{row}}-{{column}}" *ngIf="box === 'X' || box === 'O'">
