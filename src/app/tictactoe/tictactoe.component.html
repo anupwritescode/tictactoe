@@ -1,12 +1,12 @@
 <div class="game-pad">
-  <p>Current Turn : {{currentTurn}}</p>
-  <div *ngFor="let line of gamePad; index as row" class="game-pad-line">
-    <div (click)="markBox(row, column)" *ngFor="let box of line; index as column" class="game-pad-box">
+  <h4>Current Turn - {{currentTurn}}</h4> <br/>
+  <div *ngFor="let line of gamePad; index as row" class="game-pad-line" [class.border-row]="row < (gamePad.length - 1)">
+    <div (click)="markBox(row, column)" *ngFor="let box of line; index as column" class="game-pad-box" [class.border-col]="column < 2">
       <div class="box" id="{{row}}-{{column}}" *ngIf="box === 'X' || box === 'O'">
         {{box}}
       </div>
     </div>
-  </div>
+  </div> <br/>
   <div *ngIf="winner || draw">
     <h1 *ngIf="winner" class="result">
       {{currentTurn}} wins!!!
